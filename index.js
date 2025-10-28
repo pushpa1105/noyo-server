@@ -18,15 +18,16 @@ connectDB().then(async () => {
 
 const app = express();
 
-// Body parser middleware
-app.use(express.json());
-// Cookie parser middleware
-app.use(cookieParser());
+
 // Enable CORS
 app.use(cors({
   origin: process.env.CORS_ALLOWED_ORIGIN,
   credentials: true
 }));
+// Body parser middleware
+app.use(express.json());
+// Cookie parser middleware
+app.use(cookieParser());
 
 app.get('/', (req, res) => {
   res.send('API is running...');

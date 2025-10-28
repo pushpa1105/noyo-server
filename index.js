@@ -20,7 +20,7 @@ const app = express();
 
 // Enable CORS
 app.use(cors({
-  origin: ['https://noyo.vercel.app'],
+  origin: ['https://noyo.vercel.app', 'http://localhost:5173'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,

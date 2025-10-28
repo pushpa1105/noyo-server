@@ -20,9 +20,7 @@ const app = express();
 
 // Enable CORS
 app.use(cors({
-  origin: ['https://noyo.vercel.app', 'http://localhost:5173'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  origin: ['https://noyo.vercel.app', 'http://localhost:5173', 'https://noyo.onrender.com'],
   credentials: true,
 }));
 // Body parser middleware

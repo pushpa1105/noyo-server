@@ -18,11 +18,12 @@ connectDB().then(async () => {
 
 const app = express();
 
-
 // Enable CORS
 app.use(cors({
-  origin: process.env.CORS_ALLOWED_ORIGIN,
-  credentials: true
+  origin: ['https://noyo.vercel.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
 }));
 // Body parser middleware
 app.use(express.json());

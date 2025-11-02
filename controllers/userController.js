@@ -168,7 +168,7 @@ const decreaseItemFromCart = async (req, res) => {
 const getWishlist = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).populate('wishlist');
-    res.status(200).json({ success: true, wishlist: user.wishlist });
+    res.status(200).json({ success: true, data: user.wishlist });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Server Error' });
   }

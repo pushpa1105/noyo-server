@@ -45,8 +45,22 @@ const createOrder = async (req, res) => {
 // @access  Private
 const getMyOrders = async (req, res) => {
   try {
-    const orders = await Order.find({ user: req.user._id });
-    res.status(200).json({ success: true, orders });
+    const { status } = req.query;
+    const filter = {};
+
+    if (status) {
+      const statuses = status.split(',').filter(Boolean);
+
+      if (statuses.length > 0) {
+        filter.orderStatus = { $in: statuses };
+      }
+    }
+
+    const orders = await Order.find({
+      user: req.user._id,
+      ...filter
+    });
+    res.status(200).json({ success: true, data: orders });
   } catch (error) {
     res.status(500).json({ success: false, message: 'Server Error' });
   }
@@ -145,7 +159,7 @@ const updateOrderStatus = async (req, res) => {
     }
 
     await order.save();
-    res.status(200).json({ success: true, order });
+    res.status(200).json({ success: true, data: order, message: `Order status updated to ${order.orderStatus} successfully.` });
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }
